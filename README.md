@@ -2,6 +2,13 @@
 
 This amazing program displays a Kasane Teto animation and plays a poorly made version of Jaime Paige - Machine Love!
 
+| omg its kasane teto hello!! |
+|-|
+| ![Kasane Teto pixel art character with black hair and white face, smiling cheerfully against a white background](extras/tetoo.gif) |
+
+
+
+
 
 # Why
 I was just bored and thought:
