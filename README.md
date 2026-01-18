@@ -29,5 +29,8 @@ Really hard to build. You must have SDL3.
 ```c++
 g++ machinelove.cpp -o app $(pkg-config --cflags --libs sdl3) && ./app
 ```
+
+or just run ``make``
+
 Good luck
 
