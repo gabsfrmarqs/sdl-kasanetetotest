@@ -26,7 +26,6 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
     SDL_AudioSpec spec;
     char *wav_path = NULL;
     
-
     /* I'm aware this isnt smart. it's just for funsies */
     SDL_Surface *surface = NULL;
     char *png_path = NULL;
@@ -60,8 +59,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
         SDL_Log("Couldn't load png: %s", SDL_GetError());
         return SDL_APP_FAILURE;
     }
-
-    SDL_free(png_path);  /* done with this, the file is loaded. */
+    SDL_free(png_path);  /* file is loaded. */
 
     SDL_asprintf(&png_path2, "%sassets/tetohead2.png", SDL_GetBasePath());  /* allocate a string of the full file path */
     surface2 = SDL_LoadPNG(png_path2);
@@ -69,19 +67,16 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
         SDL_Log("Couldn't load png: %s", SDL_GetError());
         return SDL_APP_FAILURE;
     }
-
-    SDL_free(png_path2);  /* done with this, the file is loaded. */
+    SDL_free(png_path2);  /* file is loaded. */
 
     SDL_asprintf(&wav_path, "%sassets/jamiepage-machinelove.wav", SDL_GetBasePath());  /* allocate a string of the full file path */
     if (!SDL_LoadWAV(wav_path, &spec, &wav_data, &wav_data_len)) {
         SDL_Log("Couldn't load .wav file: %s", SDL_GetError());
         return SDL_APP_FAILURE;
     }
-
     SDL_free(wav_path);  /* done with this string. */
 
     /* Now for loading the audio file. */
-
     stream = SDL_OpenAudioDeviceStream(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, &spec, NULL, NULL);
     if (!stream) {
         SDL_Log("Couldn't create audio stream: %s", SDL_GetError());
@@ -142,14 +137,6 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
     SDL_RenderClear(renderer);  /* start with a blank canvas. */
 
-    /* center this one. */
-    /*
-    dst_rect.x = ((float) (WINDOW_WIDTH - texture_width)) / 2.0f;
-    dst_rect.y = ((float) (WINDOW_HEIGHT - texture_height)) / 2.0f;
-    dst_rect.w = (float) texture_width / 2;
-    dst_rect.h = (float) texture_height / 2;
-    */
-
     texture_width = 200;
     texture_height= 200;
 
@@ -160,6 +147,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     dst_rect.y = (WINDOW_HEIGHT - dst_rect.h) * 0.5f;
 
 
+    /* The pictures have the same size. No need to recalculate sizes or positions. */
     if ( ((now / 500) % 2) == 0 ){
         SDL_RenderTexture(renderer, texture, NULL, &dst_rect);
     } else {
