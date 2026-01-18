@@ -147,14 +147,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 /* This function runs when a new event (mouse input, keypresses, etc) occurs. */
 SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
 {
-
-    if (event->type == SDL_EVENT_MOUSE_MOTION) {
-        std::cout << "Mouse Motion Detected - "
-          << "x: " << event->motion.x
-          << ", y: " << event->motion.y << '\n';
-      }
     if (event->type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
-        std::cout << " holy shit " << '\n';
         drawTeto();
       }
     if (event->type == SDL_EVENT_QUIT) {
